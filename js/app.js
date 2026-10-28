@@ -1,5 +1,5 @@
 /* ==========================================================================
-   KAUÃ & GUSTAVO — app runtime
+   ULTRA GK — app runtime
    brand · i18n engine · smart routing · hero stack · live simulator · case filter · project brief
    ========================================================================== */
 (() => {
@@ -308,8 +308,11 @@
   function applyBrand() {
     $$("[data-brand]").forEach((el) => {
       const key = el.dataset.brand;
-      if (key === "name") el.innerHTML = esc(BRAND.name).replace(" &amp; ", ' <span class="brand__amp">&amp;</span> ');
-      else if (key === "wordmark") el.innerHTML = BRAND.wordmark.map(esc).join("<span>×</span>");
+      if (key === "lockup") {
+        const [a, b = ""] = BRAND.lockup || BRAND.name.toLowerCase().split(" ");
+        el.innerHTML = `<b>${esc(a)}</b><span>${esc(b)}</span>`;
+      }
+      else if (key === "wordmark") el.innerHTML = BRAND.wordmark.map(esc).join("<span>//</span>");
       else el.textContent = BRAND[key];
     });
     $$("[data-brand-aria]").forEach((el) => el.setAttribute("aria-label", BRAND.name));

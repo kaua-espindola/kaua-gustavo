@@ -1,5 +1,5 @@
 /* ==========================================================================
-   KAUÃ & GUSTAVO — i18n dictionary
+   ULTRA GK — i18n dictionary
    4 languages: pt (default) · en · it · es
    Every language MUST mirror the exact same key structure as `pt`.
    app.js runs a structural validation on load and warns about any gap.
@@ -10,12 +10,13 @@
    (header, footer wordmark, titles, ticket IDs, simulator URL) follows.
    -------------------------------------------------------------------------- */
 window.BRAND = {
-  name: "Kauã & Gustavo",      // header, <title>, footer © line
-  mark: "K/G",                 // square monogram in the header
-  wordmark: ["KAUÃ", "GUSTAVO"], // giant outlined footer type
-  slug: "kaua-gustavo",        // simulator fake URL
-  ticket: "KG"                 // briefing ticket prefix (#KG-26XXXX)
+  name: "Ultra GK",            // <title>, footer © line, aria labels
+  lockup: ["ultra", "gk"],     // header wordmark: first word bold, second light (as in the logo)
+  wordmark: ["ULTRA", "GK"],   // giant outlined footer type, joined by the orange //
+  slug: "ultra-gk",            // simulator fake URL
+  ticket: "UGK"                // briefing ticket prefix (#UGK-26XXXX)
 };
+// The // symbol itself is inline SVG in index.html (header) and favicon.svg.
 
 window.TRANSLATIONS = {
   /* ------------------------------------------------------------------ PT */

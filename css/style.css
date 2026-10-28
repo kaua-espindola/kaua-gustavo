@@ -1,5 +1,5 @@
 /* ==========================================================================
-   KAUÃ & GUSTAVO — Architectural Studio / Swiss Grid design system
+   ULTRA GK — Architectural Studio / Swiss Grid design system
    Carbon #0A0A0B · Technical Paper #F4F3EF · Accent #FF4F00 · System #10B981
    ========================================================================== */
 
@@ -228,22 +228,16 @@ html.lang-switching .i18n-dyn {
 }
 .navbar__inner { height: 100%; display: flex; align-items: center; gap: 28px; }
 
-.brand { display: inline-flex; align-items: center; gap: 12px; flex: none; }
-.brand__mark {
-  width: 34px; height: 34px;
-  display: grid; place-items: center;
-  border: 1px solid var(--paper);
-  font-size: 11px; font-weight: 600;
-  position: relative;
-  transition: background .3s, color .3s;
-}
-.brand__mark::after {
-  content: ""; position: absolute; top: -1px; right: -1px;
-  width: 7px; height: 7px; background: var(--accent);
-}
-.brand:hover .brand__mark { background: var(--paper); color: var(--carbon); }
-.brand__name { font-family: var(--f-display); font-weight: 600; font-size: 16px; letter-spacing: -.02em; }
-.brand__amp { color: var(--faint); font-weight: 400; }
+.brand { display: inline-flex; align-items: center; gap: 10px; flex: none; }
+/* the // symbol: short white slash + taller orange one passing in front */
+.brand__mark { width: 30px; height: 30px; display: block; }
+.brand__mark svg { width: 100%; height: 100%; overflow: visible; }
+.brand__mark .bm-w { fill: var(--paper); }
+.brand__mark .bm-o { fill: var(--accent); transition: transform .45s var(--ease-out); }
+.brand:hover .brand__mark .bm-o { transform: translate(4px, -6px); }
+.brand__name { font-family: var(--f-display); font-size: 19px; line-height: 1; letter-spacing: -.035em; }
+.brand__name b { font-weight: 700; }
+.brand__name span { font-weight: 400; color: rgba(244, 243, 239, .6); margin-left: .12em; }
 .brand__sub { font-size: 10px; color: var(--faint); letter-spacing: .08em; text-transform: uppercase; padding-left: 12px; border-left: 1px solid var(--line-strong); }
 
 .nav-links { display: flex; gap: 26px; margin-left: auto; }
