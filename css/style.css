@@ -1234,7 +1234,9 @@ html.lang-switching .i18n-dyn {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
-  [data-reveal] { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+  /* reduced motion: no movement, but blocks still fade in so the page doesn't feel frozen */
+  [data-reveal] { transform: none !important; clip-path: none !important; transition: opacity .8s ease !important; transition-delay: calc(var(--d, 0) * 70ms) !important; }
+  .sec-meta[data-reveal] { background-size: 100% 1px; }
   .hero::before, .hero::after { animation: none; }
   .packet { display: none; }
 }

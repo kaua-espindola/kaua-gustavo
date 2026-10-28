@@ -802,6 +802,7 @@
 
   function armReveal(el, kind = "up", d = 0) {
     if (!revealIO || el.dataset.reveal) return;
+    if (reduceMotion) kind = "fade"; // fade in place, no rise/clip
     el.dataset.reveal = kind;
     el.style.setProperty("--d", d);
     // a fully clipped element has no visible area, so the observer would never fire for it:
@@ -824,7 +825,7 @@
   }
 
   function initReveal() {
-    if (reduceMotion || !("IntersectionObserver" in window)) return; // everything simply stays visible
+    if (!("IntersectionObserver" in window)) return; // everything simply stays visible
     revealIO = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
         if (!en.isIntersecting) return;
