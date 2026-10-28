@@ -34,6 +34,7 @@
 
   <!-- ================================================= HEADER -->
   <header class="site-header" id="site-header">
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
     <div class="statusbar mono">
       <div class="shell statusbar__inner">
         <span class="sb-item sb-item--base"><b data-i18n="status.base"></b><span class="sb-colon">:</span> <span data-i18n="status.baseValue"></span></span>
@@ -211,7 +212,7 @@
         </div>
 
         <div class="simlab">
-          <div class="simlab__intro reveal">
+          <div class="simlab__intro">
             <h2 class="sec-title" data-i18n="sim.title"></h2>
             <p class="sec-intro" data-i18n="sim.intro"></p>
             <ol class="simlab__points">
@@ -376,14 +377,14 @@
           <span data-i18n="solutions.index"></span>
           <span class="coord">GRID 12 · 1px</span>
         </div>
-        <div class="sec-head reveal">
+        <div class="sec-head">
           <h2 class="sec-title" data-i18n="solutions.title"></h2>
           <p class="sec-intro" data-i18n="solutions.intro"></p>
         </div>
 
         <div class="bento">
           <!-- B1 -->
-          <article class="bento__cell bento__cell--a reveal" id="bento-web">
+          <article class="bento__cell bento__cell--a" id="bento-web">
             <div class="bento__top mono"><span class="bento__n">01</span><span data-i18n="solutions.b1.tag"></span></div>
             <h3 class="bento__title" data-i18n="solutions.b1.title"></h3>
             <p class="bento__text" data-i18n="solutions.b1.text"></p>
@@ -398,7 +399,7 @@
           </article>
 
           <!-- B2 -->
-          <article class="bento__cell bento__cell--b reveal" id="bento-systems">
+          <article class="bento__cell bento__cell--b" id="bento-systems">
             <div class="bento__top mono"><span class="bento__n">02</span><span data-i18n="solutions.b2.tag"></span></div>
             <h3 class="bento__title" data-i18n="solutions.b2.title"></h3>
             <p class="bento__text" data-i18n="solutions.b2.text"></p>
@@ -414,7 +415,7 @@
           </article>
 
           <!-- B3 -->
-          <article class="bento__cell bento__cell--c reveal" id="bento-python">
+          <article class="bento__cell bento__cell--c" id="bento-python">
             <div class="bento__top mono"><span class="bento__n">03</span><span data-i18n="solutions.b3.tag"></span></div>
             <h3 class="bento__title" data-i18n="solutions.b3.title"></h3>
             <p class="bento__text" data-i18n="solutions.b3.text"></p>
@@ -429,7 +430,7 @@ api.<span class="c-f">push</span>(clean, to=<span class="c-s">"dashboard"</span>
           </article>
 
           <!-- B4 -->
-          <article class="bento__cell bento__cell--d reveal" id="bento-design">
+          <article class="bento__cell bento__cell--d" id="bento-design">
             <div class="bento__top mono"><span class="bento__n">04</span><span data-i18n="solutions.b4.tag"></span></div>
             <h3 class="bento__title" data-i18n="solutions.b4.title"></h3>
             <p class="bento__text" data-i18n="solutions.b4.text"></p>
@@ -460,16 +461,16 @@ api.<span class="c-f">push</span>(clean, to=<span class="c-s">"dashboard"</span>
           <span data-i18n="team.index"></span>
           <span class="coord">UNIP · 2023 → 2026</span>
         </div>
-        <div class="sec-head reveal">
+        <div class="sec-head">
           <h2 class="sec-title" data-i18n="team.title"></h2>
           <p class="sec-intro" data-i18n="team.intro"></p>
         </div>
 
-        <div class="team-shared mono reveal"><i class="dot dot--ok" aria-hidden="true"></i><span data-i18n="team.shared"></span><span class="team-shared__line" aria-hidden="true"></span><span>BSc · CS</span></div>
+        <div class="team-shared mono"><i class="dot dot--ok" aria-hidden="true"></i><span data-i18n="team.shared"></span><span class="team-shared__line" aria-hidden="true"></span><span>BSc · CS</span></div>
 
         <div class="team">
           <!-- KAUÃ -->
-          <article class="profile reveal" id="profile-kaua">
+          <article class="profile" id="profile-kaua">
             <header class="profile__head">
               <span class="mono profile__idx"><span data-i18n="team.profile"></span> 01</span>
               <div class="monogram" aria-hidden="true"><span>KG</span><i class="mg-c mg-c--tl"></i><i class="mg-c mg-c--br"></i><small class="mono">x:01 y:K</small></div>
@@ -496,7 +497,7 @@ api.<span class="c-f">push</span>(clean, to=<span class="c-s">"dashboard"</span>
           </article>
 
           <!-- GUSTAVO -->
-          <article class="profile reveal" id="profile-gustavo">
+          <article class="profile" id="profile-gustavo">
             <header class="profile__head">
               <span class="mono profile__idx"><span data-i18n="team.profile"></span> 02</span>
               <div class="monogram" aria-hidden="true"><span>GF</span><i class="mg-c mg-c--tl"></i><i class="mg-c mg-c--br"></i><small class="mono">x:02 y:G</small></div>
@@ -531,7 +532,7 @@ api.<span class="c-f">push</span>(clean, to=<span class="c-s">"dashboard"</span>
           <span data-i18n="projects.index"></span>
           <span class="coord" id="cases-count"></span>
         </div>
-        <div class="sec-head reveal">
+        <div class="sec-head">
           <h2 class="sec-title" data-i18n="projects.title"></h2>
           <p class="sec-intro" data-i18n="projects.intro"></p>
         </div>
@@ -545,7 +546,7 @@ api.<span class="c-f">push</span>(clean, to=<span class="c-s">"dashboard"</span>
 
         <div class="cases i18n-dyn" id="cases"></div>
 
-        <div class="hub reveal" id="portfolio-hub">
+        <div class="hub" id="portfolio-hub">
           <div class="hub__intro">
             <span class="mono hub__label"><span class="sq" aria-hidden="true"></span><span data-i18n="projects.hub.label"></span> · 02</span>
             <h3 data-i18n="projects.hub.title"></h3>
@@ -576,7 +577,7 @@ api.<span class="c-f">push</span>(clean, to=<span class="c-s">"dashboard"</span>
           <span data-i18n="calc.index"></span>
           <span class="coord">BRIEFING → PROPOSTA</span>
         </div>
-        <div class="sec-head reveal">
+        <div class="sec-head">
           <h2 class="sec-title" data-i18n="calc.title"></h2>
           <p class="sec-intro" data-i18n="calc.intro"></p>
         </div>
@@ -666,7 +667,7 @@ api.<span class="c-f">push</span>(clean, to=<span class="c-s">"dashboard"</span>
   <!-- ================================================= FOOTER -->
   <footer class="footer section section--dark" id="contato">
     <div class="shell">
-      <div class="footer__cta reveal">
+      <div class="footer__cta">
         <span class="mono footer__kicker"><span class="sq" aria-hidden="true"></span><span data-i18n="footer.cta"></span></span>
         <h2 class="footer__title" data-i18n="footer.ctaBig"></h2>
         <a href="#orcamento" class="btn btn--accent btn--lg magnetic" id="footer-cta"><span data-i18n="footer.start"></span><svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13L13 3M5 3h8v8"/></svg></a>

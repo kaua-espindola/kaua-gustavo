@@ -241,6 +241,9 @@
       </article>`;
     }).join("");
 
+    // cases are re-rendered on language switch — only animate them the first time
+    if (!casesSeen) $$(".case", wrap).forEach((el, i) => armReveal(el, "up", i % 2));
+
     const counts = { all: cases.length };
     CASE_META.forEach(({ cat }) => { counts[cat] = (counts[cat] || 0) + 1; });
     $$("[data-count]").forEach((el) => { el.textContent = pad(counts[el.dataset.count] || 0); });
@@ -763,15 +766,85 @@
     });
   }
 
+  /* Scroll reveal — [selector, kind, stagger(index)]. Kinds: up (fade + rise),
+     clip (titles rising out of a mask), fade (no movement; sec-meta draws its line). */
+  const REVEAL_MAP = [
+    [".sec-meta", "fade", () => 0],
+    [".hero__title .line", "up", (i) => i + 1],
+    [".hero__sub", "up", () => 4],
+    [".hero__ctas", "up", () => 5],
+    [".stack__cap", "fade", () => 7],
+    [".sec-title", "clip", () => 0],
+    [".sec-intro", "up", () => 2],
+    [".simlab__pt", "up", (i) => 3 + i],
+    [".simlab__stage", "up", () => 2],
+    [".bento__cell", "up", (i) => i % 2],
+    [".team-shared", "up", () => 0],
+    [".profile", "up", (i) => i * 2],
+    [".filters", "up", () => 0],
+    [".hub", "up", () => 0],
+    [".calc__step", "up", (i) => i],
+    [".calc__summary", "up", () => 2],
+    [".footer__kicker", "up", () => 0],
+    [".footer__title", "clip", () => 1],
+    ["#footer-cta", "up", () => 3],
+    [".fcol", "up", (i) => i],
+    [".footer__mark", "up", () => 1],
+    [".footer__bottom", "fade", () => 2],
+    [".reveal", "up", () => 0]
+  ];
+  let revealIO = null;
+  let casesSeen = false;
+  const revealTargets = new Map(); // observed element → elements it reveals
+
+  function armReveal(el, kind = "up", d = 0) {
+    if (!revealIO || el.dataset.reveal) return;
+    el.dataset.reveal = kind;
+    el.style.setProperty("--d", d);
+    // a fully clipped element has no visible area, so the observer would never fire for it:
+    // let its parent trigger it instead
+    const trigger = kind === "clip" ? el.parentElement : el;
+    if (!revealTargets.has(trigger)) { revealTargets.set(trigger, []); revealIO.observe(trigger); }
+    revealTargets.get(trigger).push(el);
+  }
+
+  function landReveal(el) {
+    el.classList.add("in");
+    if (el.classList.contains("case")) casesSeen = true;
+    // once landed, hand the element back to its own styles (hover transitions etc.)
+    const d = Number(el.style.getPropertyValue("--d")) || 0;
+    setTimeout(() => {
+      el.removeAttribute("data-reveal");
+      el.classList.remove("in");
+      el.style.removeProperty("--d");
+    }, 1700 + d * 90);
+  }
+
   function initReveal() {
-    const els = $$(".reveal");
-    if (reduceMotion || !("IntersectionObserver" in window)) { els.forEach((e) => e.classList.add("in")); return; }
-    const io = new IntersectionObserver((entries) => {
+    if (reduceMotion || !("IntersectionObserver" in window)) return; // everything simply stays visible
+    revealIO = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
-        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+        if (!en.isIntersecting) return;
+        revealIO.unobserve(en.target);
+        (revealTargets.get(en.target) || []).forEach(landReveal);
+        revealTargets.delete(en.target);
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
-    els.forEach((e, i) => { e.style.transitionDelay = `${(i % 2) * 80}ms`; io.observe(e); });
+    }, { threshold: 0.12 }); // no negative bottom margin: elements at the very end of the page must still fire
+    REVEAL_MAP.forEach(([sel, kind, stagger]) => $$(sel).forEach((el, i) => armReveal(el, kind, stagger(i))));
+  }
+
+  function initScrollProgress() {
+    const bar = $("#scroll-progress");
+    if (!bar) return;
+    let ticking = false;
+    const update = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.setProperty("--p", max > 0 ? (window.scrollY / max).toFixed(4) : 0);
+      ticking = false;
+    };
+    window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+    update();
   }
 
   /* ====================================================================
@@ -799,6 +872,7 @@
     initHeader();
     initMagnetic();
     initReveal();
+    initScrollProgress();
 
     renderAll();
     setInterval(renderClock, 1000);
