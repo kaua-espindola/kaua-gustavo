@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ZOVEK — i18n dictionary
+   NOKRA — i18n dictionary
    4 languages: pt (default) · en · it · es
    Every language MUST mirror the exact same key structure as `pt`.
    app.js runs a structural validation on load and warns about any gap.
@@ -10,11 +10,11 @@
    (header, footer wordmark, titles, ticket IDs, simulator URL) follows.
    -------------------------------------------------------------------------- */
 window.BRAND = {
-  name: "Zovek",               // <title>, footer © line, aria labels
-  lockup: ["zovek"],           // header wordmark (a 2nd item would render lighter, as a two-word logo)
-  wordmark: "ZOVEK",           // giant outlined footer type, preceded by the orange //
-  slug: "zovek",               // simulator fake URL
-  ticket: "ZVK"                // briefing ticket prefix (#ZVK-26XXXX)
+  name: "Nokra",               // <title>, footer © line, aria labels
+  lockup: ["nokra"],           // header wordmark (a 2nd item would render lighter, as a two-word logo)
+  wordmark: "NOKRA",           // giant outlined footer type, preceded by the orange //
+  slug: "nokra",               // simulator fake URL
+  ticket: "NKR"                // briefing ticket prefix (#NKR-26XXXX)
 };
 // The // symbol itself is inline SVG in index.html (header) and favicon.svg.
 

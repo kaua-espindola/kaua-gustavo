@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ZOVEK — app runtime
+   NOKRA — app runtime
    brand · i18n engine · smart routing · hero stack · live simulator · case filter · project brief
    ========================================================================== */
 (() => {
