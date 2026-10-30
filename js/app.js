@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ULTRA GK — app runtime
+   ZOVEK — app runtime
    brand · i18n engine · smart routing · hero stack · live simulator · case filter · project brief
    ========================================================================== */
 (() => {
@@ -310,9 +310,9 @@
       const key = el.dataset.brand;
       if (key === "lockup") {
         const [a, b = ""] = BRAND.lockup || BRAND.name.toLowerCase().split(" ");
-        el.innerHTML = `<b>${esc(a)}</b><span>${esc(b)}</span>`;
+        el.innerHTML = `<b>${esc(a)}</b>${b ? `<span>${esc(b)}</span>` : ""}`;
       }
-      else if (key === "wordmark") el.innerHTML = BRAND.wordmark.map(esc).join("<span>//</span>");
+      else if (key === "wordmark") el.innerHTML = `<span>//</span>${[].concat(BRAND.wordmark).map(esc).join(" ")}`;
       else el.textContent = BRAND[key];
     });
     $$("[data-brand-aria]").forEach((el) => el.setAttribute("aria-label", BRAND.name));
